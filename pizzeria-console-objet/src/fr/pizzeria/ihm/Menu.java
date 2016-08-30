@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.pizzeria.exception.SaisieEntierException;
+import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Livreur;
+import fr.pizzeria.model.Pizza;
 
 public class Menu {
 
@@ -12,10 +15,17 @@ public class Menu {
 	private IhmHelper ihmHelper;
 
 	public Menu(IhmHelper helper) {
-		this.actions.put(1, new ListerPizzaAction(helper));
+		this.actions.put(1, new Lister<Pizza>(Pizza.class,helper));
 		this.actions.put(2, new AjouterPizzaAction(helper));
 		this.actions.put(3, new ModifierPizzaAction(helper));
 		this.actions.put(4, new SupprimerPizzaAction(helper));
+		this.actions.put(5, new Lister<Client>(Client.class,helper));
+		this.actions.put(6, new AjouterClientAction(helper));
+		this.actions.put(7, new CrediterClientAction(helper));
+		this.actions.put(8, new DebiterClientAction(helper));
+		this.actions.put(9, new Lister<Livreur>(Livreur.class,helper));
+		this.actions.put(10, new Statistique(helper));
+		this.actions.put(11, new VirementAction(helper));
 
 		this.ihmHelper = helper;
 	}

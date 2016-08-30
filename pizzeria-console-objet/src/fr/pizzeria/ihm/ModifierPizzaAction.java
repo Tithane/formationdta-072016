@@ -20,7 +20,7 @@ public class ModifierPizzaAction extends Action {
 		System.out.println("Veuillez saisir le nouveau prix de la pizza");
 		double prix = helper.getScanner().nextDouble();
 		Pizza nouvellePizza = new Pizza(code, nom, prix);
-		helper.getStockage().updatePizza(nouvellePizza, ancienCode);
+		helper.getStockagePizza().updateTobject(nouvellePizza, ancienCode);
 
 		System.out.println("Pizza modifier avec succes \n");
 

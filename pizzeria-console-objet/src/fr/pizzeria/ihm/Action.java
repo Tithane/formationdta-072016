@@ -1,6 +1,6 @@
 package fr.pizzeria.ihm;
 
-public class Action {
+public abstract class Action {
 
 	private String libelle;
 	protected IhmHelper helper;
@@ -22,5 +22,9 @@ public class Action {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+
+	
+
+	
 
 }

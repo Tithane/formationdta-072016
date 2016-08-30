@@ -4,8 +4,13 @@ import java.util.Scanner;
 
 import fr.pizzeria.ihm.IhmHelper;
 import fr.pizzeria.ihm.Menu;
+import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Livreur;
+import fr.pizzeria.model.Pizza;
 import fr.pizzeria.service.Stockage;
-import fr.pizzeria.service.StockageTableau;
+import fr.pizzeria.service.StockageClient;
+import fr.pizzeria.service.StockageLivreur;
+import fr.pizzeria.service.StockagePizzaMap;
 
 public class PizzeriaAdminConsoleApp {
 
@@ -13,9 +18,11 @@ public class PizzeriaAdminConsoleApp {
 
 		Scanner scanner = new Scanner(System.in);
 
-		Stockage stockage = new StockageTableau();
+		Stockage<Pizza> stockage = new StockagePizzaMap();
+		Stockage<Client> stockageC = new StockageClient();
+		Stockage<Livreur> stockageL = new StockageLivreur();
 
-		IhmHelper helper = new IhmHelper(stockage, scanner);
+		IhmHelper helper = new IhmHelper(stockage,stockageC,stockageL, scanner);
 
 		// Afficher le Menu
 

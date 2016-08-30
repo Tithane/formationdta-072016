@@ -10,7 +10,7 @@ public class SupprimerPizzaAction extends Action {
 	public void execute() {
 		System.out.println("Vous voulez supprimez une pizza veuillez choisir laquelle (Code)");
 		String ancienCode = helper.getScanner().next();
-		helper.getStockage().suppPizza(ancienCode);
+		helper.getStockagePizza().deleteTobject(ancienCode);
 
 		System.out.println("Pizza supprimer avec succes \n");
 
