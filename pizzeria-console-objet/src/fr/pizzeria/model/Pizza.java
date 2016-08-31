@@ -1,24 +1,38 @@
 package fr.pizzeria.model;
 
-public class Pizza {
+import java.io.Serializable;
 
-	private static int nbPizza;
-	private static int idPiz;
+public class Pizza implements ExportInterface {
+
+	
+	private static int NBPIZZA;
+	private static int IDPIZ;
 
 	private int id;
 	private String code;
 	private String nom;
 	private double prix;
+	private CategoriePizza categorie;
 
 	// Constructor
 	public Pizza(String code, String nom, double prix) {
 		super();
-		setId(idPiz + 1);
+		setId(IDPIZ + 1);
 		this.code = code.toUpperCase();
 		this.nom = nom.replace('_', ' ');
 		this.prix = prix;
-		nbPizza++;
-		idPiz++;
+		NBPIZZA++;
+		IDPIZ++;
+	}
+	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
+		super();
+		setId(IDPIZ + 1);
+		this.code = code.toUpperCase();
+		this.nom = nom.replace('_', ' ');
+		this.prix = prix;
+		this.categorie = categorie;
+		NBPIZZA++;
+		IDPIZ++;
 	}
 
 	public Pizza(int i) {
@@ -32,11 +46,11 @@ public class Pizza {
 	}
 
 	public static void setNbPizza(int nbPizza) {
-		Pizza.nbPizza = nbPizza;
+		Pizza.NBPIZZA = nbPizza;
 	}
 
 	public static int getNbPizza() {
-		return nbPizza;
+		return NBPIZZA;
 	}
 
 	public void setId(int id) {
@@ -66,10 +80,24 @@ public class Pizza {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+	
+
+	public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
+	}
 
 	@Override
 	public String toString() {
-		return this.getCode() + " " + this.getNom() + " " + this.getPrix();
+		return this.getCode() + " " + this.getNom() + " " + this.getPrix()+" "+this.getCategorie();
+	}
+	@Override
+	public String toStringXml() {
+		// TODO Auto-generated method stub
+		return "\t<Code>"+this.getCode() + "</Code>\n\t<Nom>" + this.getNom() + "</Nom>\n\t<Prix>" + this.getPrix()+"</Prix>\n\t<Categorie>"+this.getCategorie()+"</Categorie>\n";
 	}
 	
 	

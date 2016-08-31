@@ -40,6 +40,7 @@ public class Client extends AbstractPersonne{
 		this.solde = nouveauSolde;
 
 	}
+	
 
 
 

@@ -1,0 +1,28 @@
+<Client>
+	<Identifiant>0</Identifiant>
+	<Non>MOUSTAFA</Non>
+	<Prenom>Ababa</Prenom>
+	<Solde>50.0</Solde>
+</Client>
+
+<Client>
+	<Identifiant>1</Identifiant>
+	<Non>PIZZA</Non>
+	<Prenom>I like it</Prenom>
+	<Solde>50.0</Solde>
+</Client>
+
+<Client>
+	<Identifiant>2</Identifiant>
+	<Non>TI</Non>
+	<Prenom>Banjo</Prenom>
+	<Solde>50.0</Solde>
+</Client>
+
+<Client>
+	<Identifiant>3</Identifiant>
+	<Non>ARTHUR</Non>
+	<Prenom>Blablabla</Prenom>
+	<Solde>50.0</Solde>
+</Client>
+

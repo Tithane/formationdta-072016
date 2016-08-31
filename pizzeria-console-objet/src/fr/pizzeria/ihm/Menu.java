@@ -26,6 +26,11 @@ public class Menu {
 		this.actions.put(9, new Lister<Livreur>(Livreur.class,helper));
 		this.actions.put(10, new Statistique(helper));
 		this.actions.put(11, new VirementAction(helper));
+		this.actions.put(12, new ListerPizzaByCategorie(helper));
+		this.actions.put(13, new PizzaChere(helper));
+		this.actions.put(14, new ExportAction<Pizza>(Pizza.class, helper));
+		this.actions.put(15, new ExportAction<Client>(Client.class, helper));
+		this.actions.put(16, new ExportAction<Livreur>(Livreur.class, helper));
 
 		this.ihmHelper = helper;
 	}
@@ -40,13 +45,19 @@ public class Menu {
 
 	public void affichageM() {
 		System.out.println("***** Pizzeria Administration *****");
-
-		for (Integer numero : actions.keySet()) {
-			Action ActionEnCours = actions.get(numero);
-			String libelleAction = ActionEnCours.getLibelle();
-			System.out.println(numero + " " + libelleAction);
-
-		}
+		
+		actions.forEach((numero, valeur)->{
+			Action actionEnCours = valeur;
+			String libelleAction = actionEnCours.getLibelle();
+			System.out.println(numero+" "+libelleAction);
+		});
+		
+//		for (Integer numero : actions.keySet()) {
+//			Action ActionEnCours = actions.get(numero);
+//			String libelleAction = ActionEnCours.getLibelle();
+//			System.out.println(numero + " " + libelleAction);
+//
+//		}
 		System.out.println(CHOIX_SORTIR + ". Quitter" + "\n");
 	}
 

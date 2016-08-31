@@ -3,14 +3,8 @@ package fr.pizzeria.ihm;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
-import fr.pizzeria.exception.CreditException;
-import fr.pizzeria.exception.DebitException;
 import fr.pizzeria.model.AbstractPersonne;
 import fr.pizzeria.model.Client;
-import fr.pizzeria.model.CompteStat;
-import fr.pizzeria.model.Livreur;
 
 public class VirementAction extends Action {
 
@@ -27,18 +21,10 @@ public class VirementAction extends Action {
 		liste.addAll(liste_client);
 		//liste.addAll(liste_livreur);
 		System.out.println("Veuiller choisir le client à débiter\n");
-		for (AbstractPersonne personne : liste) {
-			if(personne.getSolde()>0){
-				System.out.println(personne);
-			}
-		}
+		liste.stream().filter(t -> t.getSolde() != 0).forEach(System.out::println);
 		int saisie1 = helper.getScanner().nextInt();
 		System.out.println("Veuiller choisir le client à créditer\n");
-		for (AbstractPersonne personne : liste) {
-			if(personne.getSolde() < Client.getSeuil() && personne.getId() != saisie1){
-				System.out.println(personne);
-			}
-		}
+		liste.stream().filter(t -> t.getSolde()  < Client.getSeuil() && t.getId() != saisie1).forEach(System.out::println);
 		int saisie2 = helper.getScanner().nextInt();
 		System.out.println("Veuiller indiquer le montant\n");
 		double saisie3 = helper.getScanner().nextDouble();

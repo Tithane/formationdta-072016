@@ -3,7 +3,7 @@ package fr.pizzeria.model;
 import fr.pizzeria.exception.CreditException;
 import fr.pizzeria.exception.DebitException;
 
-public abstract class AbstractPersonne implements CompteStat{
+public abstract class AbstractPersonne implements CompteStat , ExportInterface {
 	protected static int nbClient;
 	protected static int idClt;
 	protected static int SEUIL;
@@ -82,5 +82,14 @@ public abstract class AbstractPersonne implements CompteStat{
 	public String toString() {
 		return id + " -> " + nom + " " + prenom + " (" + solde + " €)";
 	}
+
+
+
+	@Override
+	public String toStringXml() {
+		return "\t<Identifiant>"+this.getId() + "</Identifiant>\n\t<Non>" + this.getNom() + "</Non>\n\t<Prenom>" + this.getPrenom()+"</Prenom>\n\t<Solde>"+this.getSolde()+"</Solde>\n";
+		
+	}
+	
 
 }

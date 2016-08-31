@@ -31,6 +31,7 @@ public class ClientConsole {
 			e.printStackTrace();
 		}
 		System.out.println(client);
+		sc.close();
 
 	}
 

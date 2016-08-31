@@ -23,11 +23,11 @@ public class Lister<T> extends Action {
 		System.out.println("**** Liste de "+entityClass.getSimpleName()+"s ****");
 		
 		Collection<T> objectsT = this.helper.getStockage(entityClass).findAll();
-		
-		for (T objectT : objectsT) {
-			System.out.println(objectT);
-		}
-		System.out.println("\n");
+		objectsT.stream().forEach(System.out::println);
+//		for (T objectT : objectsT) {
+//			System.out.println(objectT);
+//		}
+//		System.out.println("\n");
 	}
 	
 	
