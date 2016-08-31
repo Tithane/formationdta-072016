@@ -9,16 +9,19 @@ import fr.pizzeria.exception.DebitException;
 import fr.pizzeria.model.Client;
 
 public class StockageClient implements Stockage<Client> {
-	
+
 	public List<Client> clients = new ArrayList<>();
 
 	public StockageClient() {
+		// Import code here if file exist
+		
+		// FIn de test
+
 		this.clients.add(new Client("moustafa", "ababa"));
 		this.clients.add(new Client("pizza", "i like it"));
 		this.clients.add(new Client("ti", "banjo"));
 		this.clients.add(new Client("arthur", "blablabla"));
-		
-		
+
 	}
 
 	@Override
@@ -30,37 +33,35 @@ public class StockageClient implements Stockage<Client> {
 	public void saveTobject(Client newTobject) {
 		// TODO Auto-generated method stub
 		this.clients.add(newTobject);
-		
+
 	}
 
 	@Override
 	public void updateTobject(Client editTobject, String code) {
-		try{
-		Double montant = Double.parseDouble(code);
-		Client monClient = clients.get(editTobject.getId());
-			if(montant < 0){
+		try {
+			Double montant = Double.parseDouble(code);
+			Client monClient = clients.get(editTobject.getId());
+			if (montant < 0) {
 				monClient.debiterCompte(montant);
-			}else if (montant > 0){
+			} else if (montant > 0) {
 				monClient.crediterCompte(montant);
-			}else System.out.println(montant.toString());
-			System.out.println("Opération effectuée avec succes\n");
-		}
-		catch(CreditException ce){
+			} else
+				System.out.println(montant.toString());
+			System.out.println("Opï¿½ration effectuï¿½e avec succes\n");
+		} catch (CreditException ce) {
 			System.out.println("Erreur : Solde du compte trop important !\n");
-		}
-		catch(DebitException de){
+		} catch (DebitException de) {
 			System.out.println("Erreur : Solde du compte insuffisant !\n");
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println("Ce client n'existe pas\n");
 		}
-		
+
 	}
 
 	@Override
 	public void deleteTobject(String ancienCode) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

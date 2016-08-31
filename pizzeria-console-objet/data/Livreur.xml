@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><Pizzeria>
+	<Livreur>
+		<Identifiant>4</Identifiant>
+		<Non>LE</Non>
+		<Prenom>Transporteur</Prenom>
+		<Solde>100.0</Solde>
+	</Livreur>
+	<Livreur>
+		<Identifiant>5</Identifiant>
+		<Non>SPEEDY</Non>
+		<Prenom>Gonzaless</Prenom>
+		<Solde>100.0</Solde>
+	</Livreur>
+</Pizzeria>

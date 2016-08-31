@@ -23,12 +23,14 @@ public class ExportAction<T extends ExportInterface> extends Action {
 	
 	@Override
 	public void execute() {
-		String open = "<"+entityClass.getSimpleName()+">\n";
-		String close = "</"+entityClass.getSimpleName()+">\n";
+		String open = "\t<"+entityClass.getSimpleName()+">\n";
+		String close = "\t</"+entityClass.getSimpleName()+">\r";
+		String declaration = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r" ;
 		Collection<T> objectsT = this.helper.getStockage(entityClass).findAll();
 		try {
-			Files.deleteIfExists(Paths.get("data",entityClass.getSimpleName()+ ".txt"));
-			Path newFile =Files.createFile(Paths.get("data",entityClass.getSimpleName()+ ".txt"));
+			Files.deleteIfExists(Paths.get("data",entityClass.getSimpleName()+ ".mxl"));
+			Path newFile =Files.createFile(Paths.get("data",entityClass.getSimpleName()+ ".xml"));
+			Files.write(newFile, Arrays.asList(declaration+"<Pizzeria>\r"), StandardOpenOption.APPEND);
 			objectsT.stream().forEach(t -> {
 					try {
 						Files.write(newFile, Arrays.asList(open+t.toStringXml()+close), StandardOpenOption.APPEND);
@@ -37,6 +39,7 @@ public class ExportAction<T extends ExportInterface> extends Action {
 						System.out.println("Erreur : "+e.getMessage());
 					}
 				});
+			Files.write(newFile, Arrays.asList("</Pizzeria>"), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Erreur : "+e.getMessage());

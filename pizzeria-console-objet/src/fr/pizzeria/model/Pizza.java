@@ -1,8 +1,9 @@
 package fr.pizzeria.model;
 
+import java.io.File;
 import java.io.Serializable;
 
-public class Pizza implements ExportInterface {
+public class Pizza implements ExportInterface<Pizza> {
 
 	
 	private static int NBPIZZA;
@@ -97,7 +98,15 @@ public class Pizza implements ExportInterface {
 	@Override
 	public String toStringXml() {
 		// TODO Auto-generated method stub
-		return "\t<Code>"+this.getCode() + "</Code>\n\t<Nom>" + this.getNom() + "</Nom>\n\t<Prix>" + this.getPrix()+"</Prix>\n\t<Categorie>"+this.getCategorie()+"</Categorie>\n";
+		return "\t\t<Code>"+this.getCode() + "</Code>\n\t\t<Nom>" + this.getNom() + "</Nom>\n\t\t<Prix>" + this.getPrix()+"</Prix>\n\t\t<Categorie>"+this.getCategorie()+"</Categorie>\n";
+	}
+	
+	
+	
+	@Override
+	public Pizza importXML(File myFile) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

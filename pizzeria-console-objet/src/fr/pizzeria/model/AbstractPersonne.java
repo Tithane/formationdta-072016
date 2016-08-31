@@ -1,5 +1,7 @@
 package fr.pizzeria.model;
 
+import java.io.File;
+
 import fr.pizzeria.exception.CreditException;
 import fr.pizzeria.exception.DebitException;
 
@@ -80,16 +82,25 @@ public abstract class AbstractPersonne implements CompteStat , ExportInterface {
 
 	@Override
 	public String toString() {
-		return id + " -> " + nom + " " + prenom + " (" + solde + " €)";
+		return id + " -> " + nom + " " + prenom + " (" + solde + " ï¿½)";
 	}
 
 
 
 	@Override
 	public String toStringXml() {
-		return "\t<Identifiant>"+this.getId() + "</Identifiant>\n\t<Non>" + this.getNom() + "</Non>\n\t<Prenom>" + this.getPrenom()+"</Prenom>\n\t<Solde>"+this.getSolde()+"</Solde>\n";
+		return "\t\t<Identifiant>"+this.getId() + "</Identifiant>\n\t\t<Non>" + this.getNom() + "</Non>\n\t\t<Prenom>" + this.getPrenom()+"</Prenom>\n\t\t<Solde>"+this.getSolde()+"</Solde>\n";
 		
 	}
+
+
+
+	@Override
+	public Object importXML(File myFile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 
 }

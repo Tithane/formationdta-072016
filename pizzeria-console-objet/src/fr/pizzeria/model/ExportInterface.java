@@ -1,7 +1,9 @@
 package fr.pizzeria.model;
 
-import java.io.Serializable;
+import java.io.File;
 
-public interface ExportInterface{
+public interface ExportInterface<T>{
 	public String toStringXml();
+	
+	public T importXML(File myFile);
 }
