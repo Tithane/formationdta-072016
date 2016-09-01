@@ -1,7 +1,7 @@
 package fr.pizzeria.ihm;
 
 import fr.pizzeria.model.Client;
-
+@ActionAnnotation
 public class DebiterClientAction extends Action {
 
 	public DebiterClientAction(IhmHelper helper) {
@@ -13,7 +13,7 @@ public class DebiterClientAction extends Action {
 	public void execute() {
 		ListerClientAction lister_les_clients = new ListerClientAction(helper);
 		lister_les_clients.execute();
-		System.out.println("Selectionner l'id du client à dediter :");
+		System.out.println("Selectionner l'id du client ï¿½ dediter :");
 		int saisie =  helper.getScanner().nextInt();
 		Client client = new Client(saisie);
 		System.out.println("Selectionner le montant :");

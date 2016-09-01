@@ -1,5 +1,6 @@
 package fr.pizzeria.ihm;
 
+
 public abstract class Action {
 
 	private String libelle;

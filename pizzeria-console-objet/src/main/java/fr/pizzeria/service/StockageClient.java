@@ -1,5 +1,10 @@
 package fr.pizzeria.service;
 
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,6 +27,16 @@ public class StockageClient implements Stockage<Client> {
 		this.clients.add(new Client("ti", "banjo"));
 		this.clients.add(new Client("arthur", "blablabla"));
 
+	}
+	public List<Client>getDataXML(URI file){
+		try {
+			Files.readAllLines(Paths.get(file));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 
 	@Override

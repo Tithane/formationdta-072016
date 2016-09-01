@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 
 import fr.pizzeria.model.Pizza;
-
+@ActionAnnotation
 public class Lister<T> extends Action {
 	private Class<T> entityClass;
 	
