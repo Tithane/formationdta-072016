@@ -41,7 +41,7 @@ public class Client extends AbstractPersonne {
 	}
 
 	public Client(String nom, String prenom) {
-		super(nom, prenom)
+		super(nom, prenom);
 		this.solde = 50;
 		// TODO Auto-generated constructor stub
 	}
