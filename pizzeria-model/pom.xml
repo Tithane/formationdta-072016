@@ -8,4 +8,10 @@
 		<relativePath>../pizzeria-parent</relativePath>
 	</parent>
 	<artifactId>pizzeria_model</artifactId>
-	</project>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
+</project>
