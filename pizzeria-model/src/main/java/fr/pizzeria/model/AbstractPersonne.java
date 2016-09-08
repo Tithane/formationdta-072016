@@ -94,6 +94,16 @@ public abstract class AbstractPersonne implements CompteStat , ExportInterface {
 
 
 
+	@Override
+	public String toStringSql() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+
+
 	
 	
 	

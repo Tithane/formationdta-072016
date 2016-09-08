@@ -2,17 +2,16 @@ package fr.pizzeria.ihm;
 
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
-@ActionAnnotation
-public class AjouterPizzaAction extends Action {
 
-	public AjouterPizzaAction(IhmHelper helper) {
-		super("Ajouter une pizza", helper);
+public class AjouterPizzaJpa extends Action {
+
+	public AjouterPizzaJpa(IhmHelper helper) {
+		super("Ajouter Pizza (Jpa)", helper);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void execute() {
-
-		// r�cuperation de la saisie
 		System.out.println("Vous voulez ajoutez une pizza");
 		System.out.println("Veuillez saisir le code");
 		String code = helper.getScanner().next();
@@ -38,5 +37,5 @@ public class AjouterPizzaAction extends Action {
 		System.out.println("Pizza ajouter avec succes" + "\n");
 
 	}
-
+	 
 }

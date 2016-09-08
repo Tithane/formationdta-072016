@@ -1,0 +1,8 @@
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('BLA','blabla bla', 50.0,'VIANDE');
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('MDR','mort de rire', 25.0,'VIANDE');
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('BLa','blabla bla', 50.0,'VIANDE');
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('MDm','mort de rire', 25.0,'VIANDE');
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('BLkm','blabla bla', 50.0,'VIANDE');
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('MDn','mort de rire', 25.0,'VIANDE');
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('BLt','blabla bla', 50.0,'VIANDE');
+INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('MDa','mort de rire', 25.0,'VIANDE');

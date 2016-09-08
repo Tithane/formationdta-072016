@@ -18,10 +18,7 @@ public class StockageClient implements Stockage<Client> {
 	public List<Client> clients = new ArrayList<Client>();
 
 	public StockageClient() {
-		// Import code here if file exist
 		
-		// FIn de test
-
 		this.clients.add(new Client("moustafa", "ababa"));
 		this.clients.add(new Client("pizza", "i like it"));
 		this.clients.add(new Client("ti", "banjo"));

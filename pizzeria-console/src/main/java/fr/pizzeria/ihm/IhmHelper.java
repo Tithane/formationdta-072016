@@ -9,18 +9,28 @@ import fr.pizzeria.exception.SaisieEntierException;
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.service.JDBCPizza;
 import fr.pizzeria.service.Stockage;
 import fr.pizzeria.service.StockageClient;
+import fr.pizzeria.service.StockagePizzaJPA;
 import fr.pizzeria.service.StockagePizzaMap;
 
 public class IhmHelper {
 
+	
 	private Stockage<Livreur> stockageLivreur;
-	private Stockage<Pizza> stockagePizza;
+	//private JDBCPizza stockagePizza;
+	private StockagePizzaJPA stockagePizza;
+	//private Stockage<Pizza> stockagePizza;
 	private Stockage<Client> stockageClient;
 	private Scanner scanner;
 
-	public IhmHelper(Stockage<Pizza> stockage, Stockage<Client> stockageC, Stockage<Livreur> stockageL,Scanner scanner) {
+	public IhmHelper(
+			StockagePizzaJPA stockage,
+			//Stockage<Pizza> stockage, 
+			//JDBCPizza stockage,
+			Stockage<Client> stockageC,
+			Stockage<Livreur> stockageL,Scanner scanner) {
 		super();
 		this.stockageLivreur = stockageL;
 		this.stockageClient = stockageC;
@@ -40,6 +50,8 @@ public class IhmHelper {
 	public Stockage<Pizza> getStockagePizza() {
 		return stockagePizza;
 	}
+	
+	
 
 	
 	//TEST

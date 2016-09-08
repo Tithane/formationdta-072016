@@ -24,10 +24,10 @@ public class Menu {
 	private IhmHelper ihmHelper;
 
 	public Menu(IhmHelper helper) {
-		this.actions.put(1, new Lister<Pizza>(Pizza.class,helper));
-		this.actions.put(2, new AjouterPizzaAction(helper));
-		this.actions.put(3, new ModifierPizzaAction(helper));
-		this.actions.put(4, new SupprimerPizzaAction(helper));
+		this.actions.put(1, new ListerPizzaActionJpa(helper));
+		this.actions.put(2, new AjouterPizzaJpa(helper));
+		this.actions.put(3, new ModifierPizzaJpa(helper));
+		this.actions.put(4, new SupprimerPizzaJpa(helper));
 		this.actions.put(5, new Lister<Client>(Client.class,helper));
 		this.actions.put(6, new AjouterClientAction(helper));
 		this.actions.put(7, new CrediterClientAction(helper));
@@ -40,6 +40,7 @@ public class Menu {
 		this.actions.put(14, new ExportAction<Pizza>(Pizza.class, helper));
 		this.actions.put(15, new ExportAction<Client>(Client.class, helper));
 		this.actions.put(16, new ExportAction<Livreur>(Livreur.class, helper));
+		this.actions.put(17, new ImportPizza(helper));
 		
 		
 		//************Reflection*************/

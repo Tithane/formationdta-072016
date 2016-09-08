@@ -2,15 +2,15 @@ package fr.pizzeria.ihm;
 
 import fr.pizzeria.model.Pizza;
 
-public class ModifierPizzaAction extends Action {
+public class ModifierPizzaJpa extends Action{
 
-	public ModifierPizzaAction(IhmHelper helper) {
-		super("Modifier une pizza", helper);
+	public ModifierPizzaJpa(IhmHelper helper) {
+		super("Modifier Pizza (Jpa)", helper);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void execute() {
-
 		System.out.println("Vous voulez modifier une pizza veuillez choisir laquelle");
 		ListerPizzaAction lister = new ListerPizzaAction(helper);
 		lister.execute();
@@ -31,7 +31,6 @@ public class ModifierPizzaAction extends Action {
 		helper.getStockagePizza().updateTobject(nouvellePizza, ancienCode);
 
 		System.out.println("Pizza modifier avec succes \n");
-
 	}
-
+	
 }

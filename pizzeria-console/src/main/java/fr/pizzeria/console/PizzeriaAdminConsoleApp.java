@@ -7,9 +7,11 @@ import fr.pizzeria.ihm.Menu;
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.service.JDBCPizza;
 import fr.pizzeria.service.Stockage;
 import fr.pizzeria.service.StockageClient;
 import fr.pizzeria.service.StockageLivreur;
+import fr.pizzeria.service.StockagePizzaJPA;
 import fr.pizzeria.service.StockagePizzaMap;
 
 public class PizzeriaAdminConsoleApp {
@@ -18,7 +20,9 @@ public class PizzeriaAdminConsoleApp {
 
 		Scanner scanner = new Scanner(System.in);
 
-		Stockage<Pizza> stockage = new StockagePizzaMap();
+		//JDBCPizza stockage = new JDBCPizza();
+		//Stockage<Pizza> stockage = new StockagePizzaMap();
+		StockagePizzaJPA stockage = new StockagePizzaJPA();
 		Stockage<Client> stockageC = new StockageClient();
 		Stockage<Livreur> stockageL = new StockageLivreur();
 

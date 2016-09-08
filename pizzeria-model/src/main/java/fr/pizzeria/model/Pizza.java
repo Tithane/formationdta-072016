@@ -3,37 +3,43 @@ package fr.pizzeria.model;
 import java.io.File;
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Pizza implements ExportInterface<Pizza> {
 
 	
 	private static int NBPIZZA;
-	private static int IDPIZ;
-
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	private String code;
 	private String nom;
 	private double prix;
+	
+	@Enumerated(EnumType.STRING)
 	private CategoriePizza categorie;
 
 	// Constructor
 	public Pizza(String code, String nom, double prix) {
 		super();
-		setId(IDPIZ + 1);
 		this.code = code.toUpperCase();
 		this.nom = nom.replace('_', ' ');
 		this.prix = prix;
 		NBPIZZA++;
-		IDPIZ++;
 	}
 	public Pizza(String code, String nom, double prix, CategoriePizza categorie) {
 		super();
-		setId(IDPIZ + 1);
 		this.code = code.toUpperCase();
 		this.nom = nom.replace('_', ' ');
 		this.prix = prix;
 		this.categorie = categorie;
 		NBPIZZA++;
-		IDPIZ++;
 	}
 
 	public Pizza(int i) {
@@ -42,6 +48,9 @@ public class Pizza implements ExportInterface<Pizza> {
 
 	// getter & setter
 
+	public Pizza() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getId() {
 		return id;
 	}
@@ -93,7 +102,7 @@ public class Pizza implements ExportInterface<Pizza> {
 
 	@Override
 	public String toString() {
-		return this.getCode() + " " + this.getNom() + " " + this.getPrix()+" "+this.getCategorie();
+		return this.getId()+" - "+ this.getCode() + " " + this.getNom() + " " + this.getPrix()+" "+this.getCategorie();
 	}
 	
 	@Override
@@ -102,6 +111,10 @@ public class Pizza implements ExportInterface<Pizza> {
 		return "\t\t<Code>"+this.getCode() + "</Code>\n\t\t<Nom>" + this.getNom() + "</Nom>\n\t\t<Prix>" + this.getPrix()+"</Prix>\n\t\t<Categorie>"+this.getCategorie()+"</Categorie>\n";
 	}
 	
+	public String toStringSql(){
+		return "INSERT INTO `pizza` (`code`, `nom`, `prix`, `categorie`) VALUES ('"+this.getCode()+"','"+this.getNom()+"', "+this.getPrix()+",'"+this.getCategorie().name()+"');";
+		
+	}
 	
 
 	
