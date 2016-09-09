@@ -6,29 +6,24 @@ import java.util.logging.Level;
 import fr.pizzeria.ihm.IhmHelper;
 import fr.pizzeria.ihm.Menu;
 import fr.pizzeria.model.Client;
-import fr.pizzeria.model.Livreur;
-import fr.pizzeria.model.Pizza;
-import fr.pizzeria.service.JDBCPizza;
 import fr.pizzeria.service.Stockage;
 import fr.pizzeria.service.StockageClient;
-import fr.pizzeria.service.StockageLivreur;
+import fr.pizzeria.service.StockageClientJPA;
 import fr.pizzeria.service.StockagePizzaJPA;
-import fr.pizzeria.service.StockagePizzaMap;
 
-public class PizzeriaAdminConsoleApp {
+public class PizzeriaClientConsoleApp {
 
 	public static void main(String[] args) {
-
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+		
 		Scanner scanner = new Scanner(System.in);
 
 		//JDBCPizza stockage = new JDBCPizza();
 		//Stockage<Pizza> stockage = new StockagePizzaMap();
 		StockagePizzaJPA stockage = new StockagePizzaJPA();
-		Stockage<Client> stockageC = new StockageClient();
-		Stockage<Livreur> stockageL = new StockageLivreur();
-
-		IhmHelper helper = new IhmHelper(stockage,stockageC,stockageL, scanner);
+		StockageClientJPA stockageC = new StockageClientJPA();
+	
+		IhmHelper helper = new IhmHelper(stockage,stockageC, scanner);
 
 		// Afficher le Menu
 

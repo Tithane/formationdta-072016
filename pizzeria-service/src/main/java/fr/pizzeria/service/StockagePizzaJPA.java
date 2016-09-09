@@ -32,6 +32,7 @@ public class StockagePizzaJPA implements Stockage<Pizza> {
 			em.getTransaction().commit();
 		} catch (PersistenceException e) {
 			em.getTransaction().rollback();
+			e.getStackTrace();
 		} finally {
 			em.close();
 		}

@@ -2,25 +2,36 @@ package fr.pizzeria.model;
 
 import java.io.File;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import fr.pizzeria.exception.CreditException;
 import fr.pizzeria.exception.DebitException;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class AbstractPersonne implements CompteStat , ExportInterface {
 	protected static int nbClient;
-	protected static int idClt;
 	protected static int SEUIL;
 	
-	protected int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	protected Integer id;
 	protected String nom;
 	protected String prenom;
-	protected double solde;
+	
+	protected Double solde = 0.0;
 
 	public AbstractPersonne(String nom, String prenom) {
 		super();
 		prenom = prenom.substring(0, 1).toUpperCase()+prenom.substring(1);
 		this.nom = nom.toUpperCase();
 		this.prenom = prenom;
-		this.id = idClt++;
 		nbClient++;
 	}
 	

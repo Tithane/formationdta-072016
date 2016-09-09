@@ -1,8 +1,11 @@
 package fr.pizzeria.model;
 
+import javax.persistence.Entity;
+
 import fr.pizzeria.exception.CreditException;
 import fr.pizzeria.exception.DebitException;
 
+@Entity
 public class Livreur extends AbstractPersonne {
 	private static final int SEUIL = -100;
 	
@@ -20,7 +23,6 @@ public class Livreur extends AbstractPersonne {
 	}
 	public Livreur(String nom, String prenom) {
 		super(nom, prenom);
-		this.solde = 100;
 		// TODO Auto-generated constructor stub
 	}
 	public void crediterCompte(double montant) throws CreditException {

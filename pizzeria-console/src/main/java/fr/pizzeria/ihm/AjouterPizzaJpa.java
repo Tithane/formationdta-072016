@@ -29,7 +29,6 @@ public class AjouterPizzaJpa extends Action {
 		int idcat = helper.getScanner().nextInt();
 		String categorie = tabPizza[idcat].name();
 		
-		// creation de la nouvelle pizza
 		
 		Pizza nouvellePizza = new Pizza(code, nom, prix, CategoriePizza.valueOf(categorie));
 		helper.getStockagePizza().saveTobject(nouvellePizza);

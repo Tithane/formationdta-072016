@@ -6,13 +6,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.xml.crypto.dsig.DigestMethod;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -22,9 +28,34 @@ import org.xml.sax.SAXException;
 import fr.pizzeria.exception.CreditException;
 import fr.pizzeria.exception.DebitException;
 
+@Entity
 public class Client extends AbstractPersonne {
 
 	private static final int SEUIL = 5000;
+	private String mail;
+	private String password;
+	
+	
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password){
+		this.password = password;
+	}
+	
+	public void setPasswordEncrypt(String password) throws GeneralSecurityException{
+		this.password = encodage(password);
+	}
 
 	public static int getSeuil() {
 		return SEUIL;
@@ -39,11 +70,19 @@ public class Client extends AbstractPersonne {
 		super(id);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	public Client(String nom, String prenom) {
 		super(nom, prenom);
-		this.solde = 50;
 		// TODO Auto-generated constructor stub
+	}
+	
+
+	public Client(String nom, String prenom, String mail, String password) throws GeneralSecurityException {
+		super(nom, prenom);
+		this.mail = mail;
+		this.password = encodage(password);
 	}
 
 	public void crediterCompte(double montant) throws CreditException {
@@ -63,7 +102,18 @@ public class Client extends AbstractPersonne {
 		this.solde = nouveauSolde;
 
 	}
+	
+	public static String encodage(String mdp) throws GeneralSecurityException{
+		return DigestUtils.sha512Hex(mdp);
+	}
 
+	@Override
+	public String toString() {
+		
+		return super.toString()+" "+this.getMail()+" "+this.getPassword();
+	}
+
+	
 	// En cours
 //	public List<Client> xmlToClass(File fileClient) throws ParserConfigurationException, SAXException, IOException {
 //		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
