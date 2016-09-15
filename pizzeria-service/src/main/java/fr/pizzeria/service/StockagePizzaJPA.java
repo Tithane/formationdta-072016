@@ -19,6 +19,7 @@ public class StockagePizzaJPA implements Stockage<Pizza> {
 	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("pizzeria-unit");
 
 	Collection<Pizza> pizzas = new ArrayList<>();
+	Pizza maPizza = null;
 
 	public EntityManager createEm() {
 		return emfactory.createEntityManager();
@@ -67,6 +68,9 @@ public class StockagePizzaJPA implements Stockage<Pizza> {
 			pizzaUpdate.setCode(editTobject.getCode());
 			pizzaUpdate.setNom(editTobject.getNom());
 			pizzaUpdate.setPrix(editTobject.getPrix());
+			if(editTobject.getUrl()!=null){
+				pizzaUpdate.setUrl(editTobject.getUrl());
+			}
 			pizzaUpdate.setCategorie(editTobject.getCategorie());
 			em.merge(pizzaUpdate);
 		});
@@ -81,6 +85,24 @@ public class StockagePizzaJPA implements Stockage<Pizza> {
 					.setParameter("code", ancienCode).getResultList().get(0);
 			em.remove(pizza);
 		});
+	}
+	
+	public Pizza getPizza(Pizza pizza){
+		EntityManager em = createEm();
+		try {
+			Pizza pizzaUpdate = em.getReference(Pizza.class, pizza.getId());
+			maPizza = pizzaUpdate ;
+		} catch (Exception e) {
+			throw e;
+		}
+		return maPizza;
+	}
+	public Pizza getPizzaByCode(Pizza pizza){
+		mutualiser(em -> {
+			maPizza = em.createQuery("SELECT p FROM Pizza p WHERE code=:code", Pizza.class)
+					.setParameter("code", pizza.getCode()).getResultList().get(0);
+		});
+		return maPizza;
 	}
 
 }

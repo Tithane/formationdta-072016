@@ -20,7 +20,8 @@ public class Pizza implements ExportInterface<Pizza> {
 	private Integer id;
 	private String code;
 	private String nom;
-	private double prix;
+	private Double prix;
+	private String url;
 	
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza categorie;
@@ -41,7 +42,26 @@ public class Pizza implements ExportInterface<Pizza> {
 		this.categorie = categorie;
 		NBPIZZA++;
 	}
+	
+	
 
+	public Pizza(Integer id, String code, String nom, Double prix, String url, CategoriePizza categorie) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.url = url;
+		this.categorie = categorie;
+	}
+	public Pizza(Integer id, String code, String nom, Double prix, CategoriePizza categorie) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.categorie = categorie;
+	}
 	public Pizza(int i) {
 		this.id = i;
 	}
@@ -50,6 +70,10 @@ public class Pizza implements ExportInterface<Pizza> {
 
 	public Pizza() {
 		// TODO Auto-generated constructor stub
+	}
+	public Pizza(String code) {
+		super();
+		this.code = code;
 	}
 	public int getId() {
 		return id;
@@ -92,6 +116,12 @@ public class Pizza implements ExportInterface<Pizza> {
 	}
 	
 
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public CategoriePizza getCategorie() {
 		return categorie;
 	}
