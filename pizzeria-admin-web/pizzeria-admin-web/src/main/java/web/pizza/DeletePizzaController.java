@@ -1,4 +1,4 @@
-package web;
+package web.pizza;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.service.StockagePizzaJPA;
+import fr.pizzeria.service.utils.PersistanceUtils;
 
 public class DeletePizzaController extends HttpServlet {
 	Collection<Pizza> liste_pizza = new ArrayList<>();
-	StockagePizzaJPA monStockagePizza = new StockagePizzaJPA();
+	
 	
 	public void MesPizzas(){
-		liste_pizza = monStockagePizza.findAll();
+		liste_pizza = PersistanceUtils.getInstance().getStockagePizza().findAll();
 	}
 	
 	public boolean TestExist(Pizza pizza){
@@ -37,7 +38,7 @@ public class DeletePizzaController extends HttpServlet {
 		String code = req.getParameter("code");
 		Pizza maPizza = new Pizza(code);
 		if (TestExist(maPizza)) {
-			monStockagePizza.deleteTobject(maPizza.getCode());
+			PersistanceUtils.getInstance().getStockagePizza().deleteTobject(maPizza.getCode());
 			resp.sendRedirect(req.getContextPath()+"/pizzas/list");
 		} else {
 			

@@ -1,4 +1,4 @@
-package web;
+package web.pizza;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,12 +39,14 @@ public class EditPizzaController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/views/pizzas/editPizza.jsp");
+		CategoriePizza[] catPizza = CategoriePizza.values();
 		if(req.getParameter("code")!= null){
 				pizza = monStockagePizza.getPizzaByCode(new Pizza((String)req.getParameter("code")));
 				req.setAttribute("maPizza", pizza);
 			}else {
 				req.setAttribute("maPizza", null);
 			}
+		req.setAttribute("catPizza", catPizza);
 		rd.forward(req, resp);
 	}
 
