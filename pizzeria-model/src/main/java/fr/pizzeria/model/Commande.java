@@ -45,6 +45,18 @@ public class Commande {
 	}
 	
 	
+	
+	public Commande(String numero_commande, Calendar date_commande, Client client_id, Set<Pizza> pizzas) {
+		super();
+		this.numero_commande = numero_commande;
+		this.date_commande = date_commande;
+		this.client_id = client_id;
+		this.pizzas = pizzas;
+		this.statut = EnumStatut.EN_COURS;
+	}
+
+
+
 	public Commande(Integer id, String numero_commande, EnumStatut statut, Calendar date_commande, Livreur livreur_id,
 			Client client_id) {
 		super();

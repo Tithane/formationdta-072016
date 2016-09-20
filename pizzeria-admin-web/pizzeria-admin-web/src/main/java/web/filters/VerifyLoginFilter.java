@@ -10,12 +10,15 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+@WebFilter(urlPatterns={"/*"})
 public class VerifyLoginFilter implements Filter {
 	
-	private static final List<String> URL_SANS_AUTH = Arrays.asList("/login", "/logout", "/media");
+	private static final List<String> URL_SANS_AUTH = Arrays.asList("/login", "/logout", "/media","/api/rest");
 
 
 	@Override
@@ -28,7 +31,7 @@ public class VerifyLoginFilter implements Filter {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		Boolean isAuthentifie = (Boolean) httpRequest.getSession().getAttribute("authentifie");
+		Boolean isAuthentifie = (Boolean) httpRequest.getSession(true).getAttribute("authentifie");
 		
 		String requestURI = httpRequest.getRequestURI();
 		

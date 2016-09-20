@@ -1,51 +1,63 @@
 package web.pizza;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
-import fr.pizzeria.service.StockagePizzaJPA;
+import fr.pizzeria.service.ejb.PizzaServiceEJB;
 
+@WebServlet("/pizzas/edit")
 public class EditPizzaController extends HttpServlet {
+
 	Collection<Pizza> liste_pizza = new ArrayList<>();
-	StockagePizzaJPA monStockagePizza = new StockagePizzaJPA();
-	Pizza pizza= null;
-	
-	
-	
-	public boolean TestExist(Pizza pizza){
-		liste_pizza = monStockagePizza.findAll();
-		AtomicBoolean etat = new AtomicBoolean() ;
+//	@Inject
+//	@Named("stockagePizzaJPA")
+//	private Stockage<Pizza> stockagePizza;
+	@EJB private PizzaServiceEJB stockagePizza ;
+
+	public boolean TestExist(Pizza pizza) {
+		liste_pizza = stockagePizza.findAll();
+		AtomicBoolean etat = new AtomicBoolean();
 		etat.set(false);
-		liste_pizza.stream().forEach(pizzaBase->{
-			if(pizzaBase.getCode().equals(pizza.getCode())){etat.set(true);};
+		liste_pizza.stream().forEach(pizzaBase -> {
+			if (pizzaBase.getCode().equals(pizza.getCode())) {
+				etat.set(true);
+			}
+			;
 		});
 		return etat.get();
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/views/pizzas/editPizza.jsp");
 		CategoriePizza[] catPizza = CategoriePizza.values();
-		if(req.getParameter("code")!= null){
-				pizza = monStockagePizza.getPizzaByCode(new Pizza((String)req.getParameter("code")));
-				req.setAttribute("maPizza", pizza);
-			}else {
-				req.setAttribute("maPizza", null);
+		Pizza maPizza = new Pizza();
+		if (req.getParameter("code") != null) {
+			Optional<Pizza> pizzaOpt = stockagePizza.findAll().stream()
+					.filter(laPizza -> laPizza.getCode().equals(req.getParameter("code"))).findFirst();
+			if (pizzaOpt.isPresent()) {
+				maPizza = pizzaOpt.get();
+			} else {
+				req.setAttribute("maPizza", maPizza);
 			}
+
+			req.setAttribute("maPizza", maPizza);
+		} else {
+			req.setAttribute("maPizza", null);
+		}
 		req.setAttribute("catPizza", catPizza);
 		rd.forward(req, resp);
 	}
@@ -53,16 +65,11 @@ public class EditPizzaController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Pizza maPizza = new Pizza();
-		if(req.getParameter("id")!=null){
-			Integer id = Integer.parseInt(req.getParameter("id"));
-			maPizza.setId(id);
-		}
 		String url = "noImage.jpg";
-		if(!req.getParameter("url").isEmpty()){
+		if (!req.getParameter("url").isEmpty()) {
 			url = req.getParameter("url");
 		}
-		maPizza.setUrl(url);
-		String code =  req.getParameter("code");
+		String code = req.getParameter("code");
 		Double prix = Double.parseDouble(req.getParameter("prix"));
 		String nom = req.getParameter("nom");
 		String categorie = req.getParameter("cat");
@@ -70,15 +77,19 @@ public class EditPizzaController extends HttpServlet {
 		maPizza.setNom(nom);
 		maPizza.setPrix(prix);
 		maPizza.setCategorie(CategoriePizza.valueOf(categorie.toUpperCase()));
-		if(TestExist(maPizza)){
-			monStockagePizza.updateTobject(maPizza, null);
-		}else{
-			monStockagePizza.saveTobject(maPizza);
+		if (req.getParameter("id") != null) {
+			Integer id = Integer.parseInt(req.getParameter("id"));
+			maPizza.setId(id);
+			if (!req.getParameter("url").isEmpty()) {
+				url = req.getParameter("url");
+				maPizza.setUrl(url);
+			}
+			stockagePizza.updateTobject(maPizza, null);
+		} else {
+			maPizza.setUrl(url);
+			stockagePizza.saveTobject(maPizza);
 		}
-		resp.sendRedirect(req.getContextPath()+"/pizzas/list");
+		resp.sendRedirect(req.getContextPath() + "/pizzas/list");
 	}
-	
 
-	
-	
 }

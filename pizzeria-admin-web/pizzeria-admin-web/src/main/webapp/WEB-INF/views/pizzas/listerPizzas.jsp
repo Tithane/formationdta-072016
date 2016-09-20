@@ -54,6 +54,7 @@
 			</tbody>
 		</table>
 		<a href='<c:url value="/logout"></c:url>'>Se deconnecter</a>
+		<span>${nb}</span>
 	</div>
 </body>
 </html>

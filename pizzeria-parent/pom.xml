@@ -71,6 +71,7 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>5.1.0.Final</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>commons-codec</groupId>
@@ -81,6 +82,7 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>3.1.0</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
@@ -91,6 +93,16 @@
 				<groupId>jstl</groupId>
 				<artifactId>jstl</artifactId>
 				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.enterprise</groupId>
+				<artifactId>cdi-api</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>7.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -103,6 +115,13 @@
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -144,6 +163,7 @@
 		<module>../pizzeria-model</module>
 		<module>../pizzeria-service</module>
 		<module>../pizzeria-client</module>
+
 
 
 	</modules>

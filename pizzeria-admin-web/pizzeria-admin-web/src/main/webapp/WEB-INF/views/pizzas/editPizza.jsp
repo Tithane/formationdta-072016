@@ -15,7 +15,7 @@
 
 		<c:if test="${!empty maPizza}">
 			<form class="form-horizontal" method="Post"
-				action='<c:url value="edit?code=${maPizza.code}"></c:url>'>
+				action='<c:url value="edit"></c:url>'>
 				<legend>Modification Pizza</legend>
 				<div>
 					<input name="id" type="hidden" value="${maPizza.id }">
@@ -31,7 +31,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="code">Code</label>
 				<div class="col-md-4">
-					<input id="code" name="code" type="text"
+					<input id="code" name="code" type="text" maxlength="3"
 						placeholder="code de la pizza (3 lettres)"
 						class="form-control input-md" required=""
 						<c:if test="${!empty maPizza}">
@@ -69,7 +69,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="prix">Prix</label>
 				<div class="col-md-4">
-					<input id="prix" name="prix" type="text"
+					<input id="prix" name="prix" type="number" step="any"
 						placeholder="Prix de la pizza" class="form-control input-md"
 						required=""
 						<c:if test="${!empty maPizza}">

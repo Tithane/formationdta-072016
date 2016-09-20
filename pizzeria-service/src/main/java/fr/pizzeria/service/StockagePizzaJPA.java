@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -14,6 +16,8 @@ import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Pizza;
 
+
+@Named
 public class StockagePizzaJPA implements Stockage<Pizza> {
 
 	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("pizzeria-unit");

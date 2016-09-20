@@ -4,6 +4,8 @@ import fr.pizzeria.model.Pizza;
 import fr.pizzeria.service.Stockage;
 import fr.pizzeria.service.StockagePizzaJPA;
 
+
+
 public class PersistanceUtils {
 private static PersistanceUtils instanceUnique = new PersistanceUtils();
     
