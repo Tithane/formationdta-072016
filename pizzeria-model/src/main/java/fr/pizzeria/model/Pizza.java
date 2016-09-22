@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Pizza implements ExportInterface<Pizza> {
+public class Pizza implements ExportInterface<Pizza>,Serializable {
 
 	
 	private static int NBPIZZA;
@@ -77,7 +77,7 @@ public class Pizza implements ExportInterface<Pizza> {
 		super();
 		this.code = code;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -89,7 +89,7 @@ public class Pizza implements ExportInterface<Pizza> {
 		return NBPIZZA;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

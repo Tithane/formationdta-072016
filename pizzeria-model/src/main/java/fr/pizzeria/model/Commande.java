@@ -1,5 +1,11 @@
 package fr.pizzeria.model;
 
+import java.beans.Encoder;
+import java.beans.ExceptionListener;
+import java.beans.Expression;
+import java.beans.PersistenceDelegate;
+import java.beans.Statement;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
@@ -15,7 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Commande {
+public class Commande implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,9 +33,9 @@ public class Commande {
 	//utilisation de LocalDate Complexe avec JPA
 	private Calendar date_commande;
 	@OneToOne
-	private Livreur livreur_id;
+	private Livreur livreur;
 	@OneToOne
-	private Client client_id;
+	private Client client;
 	
 	@ManyToMany
 	@JoinTable(name="commande_pizza",
@@ -50,7 +56,7 @@ public class Commande {
 		super();
 		this.numero_commande = numero_commande;
 		this.date_commande = date_commande;
-		this.client_id = client_id;
+		this.client = client_id;
 		this.pizzas = pizzas;
 		this.statut = EnumStatut.EN_COURS;
 	}
@@ -64,8 +70,8 @@ public class Commande {
 		this.numero_commande = numero_commande;
 		this.statut = statut;
 		this.date_commande = date_commande;
-		this.livreur_id = livreur_id;
-		this.client_id = client_id;
+		this.livreur = livreur_id;
+		this.client = client_id;
 	}
 	
 
@@ -76,8 +82,8 @@ public class Commande {
 		this.numero_commande = numero_commande;
 		this.statut = statut;
 		this.date_commande = date_commande;
-		this.livreur_id = livreur_id;
-		this.client_id = client_id;
+		this.livreur = livreur_id;
+		this.client = client_id;
 		this.pizzas = pizzas;
 	}
 
@@ -120,17 +126,19 @@ public class Commande {
 		this.date_commande = date_commande;
 	}
 	public Livreur getLivreur_id() {
-		return livreur_id;
+		return livreur;
 	}
 	public void setLivreur_id(Livreur livreur_id) {
-		this.livreur_id = livreur_id;
+		this.livreur = livreur_id;
 	}
 	public Client getClient_id() {
-		return client_id;
+		return client;
 	}
 	public void setClient_id(Client client_id) {
-		this.client_id = client_id;
+		this.client = client_id;
 	}
+
+
 	
 	
 }

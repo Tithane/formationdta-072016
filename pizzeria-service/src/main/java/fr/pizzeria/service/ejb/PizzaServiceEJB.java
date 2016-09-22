@@ -13,7 +13,7 @@ import fr.pizzeria.model.Pizza;
 import fr.pizzeria.service.Stockage;
 
 @Stateless
-public class PizzaServiceEJB {
+public class PizzaServiceEJB{
 
 	@PersistenceContext
 	EntityManager em;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/myJs.js"></script>
+	<script src="js/MyWebSocket.js"></script>
+	<title>Liste des Commandes</title>
+</head>
+
+<body>
+
+
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="ModalTitre">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<div id="ModalInfoClt"></div>
+					<div id="ModalInfoCom"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div class="container">
+		<h2>Liste des commandes</h2>
+		<table id="table" class="table table-bordered" style="text-align: center">
+			<thead>
+				<tr>
+					<th>Numero Commande</th>
+					<th>Client</th>
+					<th>Livreur</th>
+					<th>Date</th>
+					<th>Statut</th>
+					<th colspan="2" style="text-align: center">Actions</th>
+				</tr>
+			</thead>
+			<tbody id="bodyTable">
+
+			</tbody>
+		</table>
+		
+	</div>
+
+</body>
+
+</html>

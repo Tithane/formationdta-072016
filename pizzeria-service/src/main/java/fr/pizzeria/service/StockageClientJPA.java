@@ -17,6 +17,7 @@ public class StockageClientJPA implements Stockage<Client>{
 	
 	Collection<Client> clients = new ArrayList<>();
 	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("pizzeria-unit");
+
 	Client monClient = null;
 
 	@Override

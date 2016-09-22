@@ -1,6 +1,7 @@
 package fr.pizzeria.model;
 
 import java.io.File;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import fr.pizzeria.exception.DebitException;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class AbstractPersonne implements CompteStat , ExportInterface {
+public abstract class AbstractPersonne implements CompteStat , ExportInterface, Serializable {
 	protected static int nbClient;
 	protected static int SEUIL;
 	

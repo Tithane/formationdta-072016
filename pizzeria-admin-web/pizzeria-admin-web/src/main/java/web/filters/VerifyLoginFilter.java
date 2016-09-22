@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter(urlPatterns={"/*"})
 public class VerifyLoginFilter implements Filter {
 	
-	private static final List<String> URL_SANS_AUTH = Arrays.asList("/login", "/logout", "/media","/api/rest");
+	private static final List<String> URL_SANS_AUTH = Arrays.asList("/login", "/logout", "/media","/api/rest","/websocket");
 
 
 	@Override
