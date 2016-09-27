@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
 import fr.pizzeria.model.Pizza;
 
 
-@Named
+//@Named
 public class StockagePizzaJPA implements Stockage<Pizza> {
 
 	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("pizzeria-unit");

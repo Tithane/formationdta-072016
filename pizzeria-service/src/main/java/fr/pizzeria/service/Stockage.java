@@ -5,7 +5,7 @@ import java.util.Collection;
 import javax.enterprise.context.ApplicationScoped;
 
 
-@ApplicationScoped
+//@ApplicationScoped
 public interface Stockage<T> {
 
 	Collection<T> findAll();

@@ -95,7 +95,7 @@ public class Client extends AbstractPersonne {
 	}
 
 	public void debiterCompte(double montant) throws DebitException {
-		double nouveauSolde = this.solde + montant;
+		double nouveauSolde = this.solde - montant;
 		if (nouveauSolde < 0) {
 			throw new DebitException();
 		}

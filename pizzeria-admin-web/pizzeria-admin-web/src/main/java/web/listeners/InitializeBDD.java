@@ -32,7 +32,11 @@ public class InitializeBDD implements ServletContextListener{
 		Pizza maPizza2 =  new Pizza("FDM","Fruit_de_mer",22, CategoriePizza.SANS_VIANDE);
 		try {
 			AbstractPersonne client = new Client("Mr TEST", "Test", "test@test.fr", "test");
+			AbstractPersonne client1 = new Client("Mr TEST01", "Test01", "test01@test.fr", "test");
+			AbstractPersonne client2 = new Client("Mr TEST02", "Test02", "test02@test.fr", "test");
 			stockagePersonne.saveTobject(client);
+			stockagePersonne.saveTobject(client2);
+			stockagePersonne.saveTobject(client1);
 			
 			
 		} catch (GeneralSecurityException e) {

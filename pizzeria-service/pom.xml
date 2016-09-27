@@ -41,5 +41,6 @@
 			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
 	</dependencies>
 </project>

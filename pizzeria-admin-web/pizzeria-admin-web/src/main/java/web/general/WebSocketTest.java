@@ -19,6 +19,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+//import fr.pizzeria.model.OrmUtils;
 import fr.pizzeria.service.ejb.event.NewCommandeEvent;
 
 @ServerEndpoint(value="/websocket")
@@ -46,11 +47,12 @@ public class WebSocketTest {
 	public void onNewCommande(@Observes NewCommandeEvent event) {
 		ObjectMapper mapper = new ObjectMapper();
 		clients.forEach(client -> {
-			try {
-				client.getBasicRemote().sendText(mapper.writeValueAsString(event.getCommandeCree()));
+			/*try {
+				client.getBasicRemote().sendText(mapper.writeValueAsString(OrmUtils.initializeAndUnproxy(event.getCommandeCree())
+						));
 			} catch (IOException e) {
 				Logger.getAnonymousLogger().log(Level.SEVERE, "Une erreur est survenu",e);
-			}
+			}*/
 		});
 	}
 }

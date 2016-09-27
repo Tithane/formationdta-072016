@@ -1,4 +1,4 @@
-package dta.pizzeria_spring;
+package dta.pizzeria_spring.beans;
 
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

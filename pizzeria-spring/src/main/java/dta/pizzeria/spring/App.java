@@ -1,4 +1,4 @@
-package dta.pizzeria_spring;
+package dta.pizzeria.spring;
 
 /**
  * Hello world!
