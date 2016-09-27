@@ -4,8 +4,14 @@ var stockageListe;
 function obtenirObjet(monObjet){
 	var monClient;
 	monClient = stockageListe.find(function (unClient) {
-		return unClient.id == monObjet;
+		return unClient.id == monObjet.data.id;
 	})
+	if(monClient == null){
+		stockageListe.add(monObjet.data);
+	}else{
+		//Modification du client de ma liste
+	}
+	//Ajout d'une fonction qui recrée mon html en le mettant a jours
 }
 
 //fonction qui affiche mon modal avec les info de la commande
@@ -85,6 +91,6 @@ $(document).ready(function () {
 			dataType: "JSON",
 			type: "POST",
 		})
-		$('#myModal').hide();
+		$('#myModal').modal('hide');
 	})
 });

@@ -13,6 +13,8 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import dta.pizzeria.spring.event.CreateClientEvent;
 import fr.pizzeria.model.Client;
 
@@ -63,9 +65,11 @@ public class myHandler implements WebSocketHandler, ApplicationListener<CreateCl
 	@Override
 	public void onApplicationEvent(CreateClientEvent arg0) {
 		this.monClient = (Client)arg0.getSource();
+		ObjectMapper mapper = new ObjectMapper();
+		
 		mesClients.forEach(clt -> {
 			try {
-				clt.sendMessage(new TextMessage(monClient.toString()));
+				clt.sendMessage(new TextMessage(mapper.writeValueAsString(monClient)));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
